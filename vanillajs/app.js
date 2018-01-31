@@ -4,30 +4,20 @@
    * @param  {HTMLCollection} fields elements tha show the calculated value
    * @return {Function}              actual calculation
    */
-  var calculate = (function(fields) {
+  var calculate = (function(fields, baseScores) {
     return function(raceMods) {
       raceMods.forEach(function(mod, ind) {
-        fields[ind].innerText = parseInt(mod, 10) + 8;
+        fields[ind].innerText = parseInt(mod, 10) + parseInt(baseScores[ind].dataset.score, 10);
       });
     }
-  }(document.getElementsByClassName('total')));
+  }(document.getElementsByClassName('total'), document.querySelectorAll('[data-score]')));
 
-  /**
-   * Handle Change event for the race select element
-   * @param  {HTMLCollection} modFields elements that show the modifier
-   * @return {Function}                 event handler
-   */
-  var handleRaceChange = (function (modFields) {
-    return function() {
-      var raceMods = JSON.parse(this.value);
-
-      raceMods.forEach(function(mod, ind) {
-        modFields[ind].innerText = mod;
-      });
-
-      calculate(raceMods, null, null);
-    }
-  }(document.getElementsByClassName('mod')));
+  function handleRaceChange(modFields) {
+    var raceMods = JSON.parse(this.value);
+    raceMods.forEach(function(mod, ind) {
+      modFields[ind].innerText = mod;
+    });
+  }
 
   function inRange(num) {
     return num > 15 ? 15 : num < 8 ? 8 : num;
@@ -51,8 +41,12 @@
   (function() {
     var app = document.getElementById('app');
     var raceSelect = document.getElementById('select-race');
+    var modFields = document.getElementsByClassName('mod');
 
-    raceSelect.addEventListener('change', handleRaceChange);
+    raceSelect.addEventListener('change', function(event) {
+      handleRaceChange.call(event.target, modFields);
+      // calculate();
+    });
 
     app.addEventListener('click', function(event) {
       switch(event.target.className) {
