@@ -28,15 +28,18 @@ var handleRaceChange = (function (modFields) {
   }
 }(document.getElementsByClassName('mod')));
 
+function inRange(num) {
+  return num > 15 ? 15 : num < 8 ? 8 : num;
+}
 
 function handleAdd() {
   var dataset = this.parentElement.previousElementSibling.dataset;
-  return dataset.score = parseInt(dataset.score, 10) + 1;
+  return dataset.score = inRange(parseInt(dataset.score, 10) + 1);
 }
 
 function handleSubtract() {
   var dataset = this.parentElement.previousElementSibling.dataset;
-  return dataset.score = parseInt(dataset.score, 10) - 1;
+  return dataset.score = inRange(parseInt(dataset.score, 10) - 1);
 }
 
 function handleReset() {
