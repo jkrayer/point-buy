@@ -1,4 +1,3 @@
-
 /**
  * calculate and show final scores
  * @param  {HTMLCollection} fields elements tha show the calculated value
@@ -11,7 +10,6 @@ var calculate = (function(fields) {
     });
   }
 }(document.getElementsByClassName('total')));
-
 
 /**
  * Handle Change event for the race select element
@@ -31,9 +29,27 @@ var handleRaceChange = (function (modFields) {
 }(document.getElementsByClassName('mod')));
 
 
+function handleAdd(event) {
+  var dataset = this.parentElement.previousElementSibling.dataset;
+  return dataset.score = parseInt(dataset.score, 10) + 1;
+}
+
 // Attach events
 (function() {
+  var app = document.getElementById('app');
   var raceSelect = document.getElementById('select-race');
 
   raceSelect.addEventListener('change', handleRaceChange);
+
+
+  app.addEventListener('click', function(event) {
+    switch(event.target.className) {
+      case 'add':
+        handleAdd.call(event.target, event);
+      break;
+      default:
+      break;
+    }
+  });
+
 }());
