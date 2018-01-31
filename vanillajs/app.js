@@ -1,16 +1,12 @@
 (function() {
-  /**
-   * calculate and show final scores
-   * @param  {HTMLCollection} fields elements tha show the calculated value
-   * @return {Function}              actual calculation
-   */
-  var calculate = (function(fields, baseScores) {
-    return function(raceMods) {
-      raceMods.forEach(function(mod, ind) {
-        fields[ind].innerText = parseInt(mod, 10) + parseInt(baseScores[ind].dataset.score, 10);
-      });
+
+  var calculate = (function(totalFields) {
+    return function(mods, baseScores) {
+      for (var i = 0; i < 6; i++) {
+        totalFields[i].innerText = mods[i] + parseInt(baseScores[i].dataset.score, 10);
+      }
     }
-  }(document.getElementsByClassName('total'), document.querySelectorAll('[data-score]')));
+  }(document.getElementsByClassName('total')));
 
   function handleRaceChange(modFields) {
     var raceMods = JSON.parse(this.value);
@@ -42,10 +38,11 @@
     var app = document.getElementById('app');
     var raceSelect = document.getElementById('select-race');
     var modFields = document.getElementsByClassName('mod');
+    var baseScores = document.querySelectorAll('[data-score]');
 
     raceSelect.addEventListener('change', function(event) {
       handleRaceChange.call(event.target, modFields);
-      // calculate();
+      calculate(JSON.parse(event.target.value), baseScores);
     });
 
     app.addEventListener('click', function(event) {
@@ -62,6 +59,7 @@
         default:
         break;
       }
+      calculate(JSON.parse(raceSelect.value), baseScores);
     });
   }());
 }());
