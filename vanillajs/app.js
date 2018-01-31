@@ -1,4 +1,29 @@
 (function() {
+  var pointTally = (function() {
+    var max = 27;
+    var pool = max;
+    var costTable = new Map([[8, 0], [9, 1], [10, 2], [11, 3], [12, 4], [13, 5],[ 14, 7], [15, 9]]);
+
+    return {
+      getRemainder: function() {
+        return pool;
+      },
+      checkScore: function(oldScore, newScore) {
+        var difference = costTable.get(oldScore) - costTable.get(newScore);
+        var newPool = pool + difference;
+
+        if (newPool > max || newPool < 0 || isNaN(newPool)) {
+          return false;
+        }
+
+        pool = newPool;
+        return newScore;
+      },
+      reset: function() {
+        return pool = max;
+      }
+    };
+  }());
 
   var calculate = (function(totalFields) {
     return function(mods, baseScores) {
@@ -15,22 +40,25 @@
     });
   }
 
-  function inRange(num) {
-    return num > 15 ? 15 : num < 8 ? 8 : num;
-  }
-
   function handleAdd() {
     var dataset = this.parentElement.previousElementSibling.dataset;
-    return dataset.score = inRange(parseInt(dataset.score, 10) + 1);
+    var score = parseInt(dataset.score, 10);
+
+    return dataset.score = pointTally.checkScore(score, score + 1) || score;
   }
 
   function handleSubtract() {
     var dataset = this.parentElement.previousElementSibling.dataset;
-    return dataset.score = inRange(parseInt(dataset.score, 10) - 1);
+    var score = parseInt(dataset.score, 10);
+
+    return dataset.score = pointTally.checkScore(score, score - 1) || score;
   }
 
   function handleReset() {
-    return this.parentElement.previousElementSibling.dataset.score = 8;
+    var dataset = this.parentElement.previousElementSibling.dataset;
+    var score = parseInt(dataset.score, 10);
+
+    return dataset.score = pointTally.checkScore(score, 8);
   }
 
   function handleLoad(theSelect) {
@@ -42,7 +70,8 @@
     var app = document.getElementById('app');
     var raceSelect = document.getElementById('select-race');
     var modFields = document.getElementsByClassName('mod');
-    var baseScores = document.querySelectorAll('[data-score]');
+    var baseScores = document.querySelectorAll('tbody [data-score]');
+    var remainingPoints = document.getElementById('remaining-points');
 
     window.addEventListener('load', handleLoad.bind(null, raceSelect));
 
@@ -66,6 +95,7 @@
         break;
       }
       calculate(JSON.parse(raceSelect.value), baseScores);
+      remainingPoints.dataset.score = pointTally.getRemainder();
     });
   }());
 }());
