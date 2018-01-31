@@ -5,14 +5,22 @@
   <title>Template - Point Buy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
+    body, html { padding: 0; margin: 0; font-family: Times, "Time New Roman", Georgia, serif; }
     [data-score]::after { content: attr(data-score); }
+    tbody > tr:nth-of-type(odd) { background-color: #eee; }
+    tbody th { text-align: right; }
+    td, th { padding: .625em; }
+    td, thead th { text-align: center; }
+    select { width: 59%; }
+    .text-left { text-align: left; }
+    .text-right { text-align: right; }
   </style>
 </head>
 <body>
   <table id="app">
     <thead>
       <tr>
-        <td colspan="4">
+        <td colspan="5" class="text-left">
           <select id="select-race">
             <option value="[0,0,0,0,0,0]">Race</option>
             <option value="[0,2,0,0,1,0]">Hill Dwarf</option>
@@ -25,14 +33,13 @@
             <option value="[0,0,0,0,0,0]" disabled>Variant Human</option>
           </select>
         </td>
-        <td id="remaining-points" data-score="27" style="text-align: right;">Points: </td>
       </tr>
       <tr>
-        <td></td>
+        <th>Score</th>
         <th>Total</th>
         <th>Race</th>
         <th>Base</th>
-        <td></td>
+        <td id="remaining-points" class="text-right" data-score="27">Points: </td>
       </tr>
     </thead>
     <tbody>
