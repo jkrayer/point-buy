@@ -29,9 +29,14 @@ var handleRaceChange = (function (modFields) {
 }(document.getElementsByClassName('mod')));
 
 
-function handleAdd(event) {
+function handleAdd() {
   var dataset = this.parentElement.previousElementSibling.dataset;
   return dataset.score = parseInt(dataset.score, 10) + 1;
+}
+
+function handleSubtract() {
+  var dataset = this.parentElement.previousElementSibling.dataset;
+  return dataset.score = parseInt(dataset.score, 10) - 1;
 }
 
 // Attach events
@@ -46,6 +51,9 @@ function handleAdd(event) {
     switch(event.target.className) {
       case 'add':
         handleAdd.call(event.target, event);
+      break;
+      case 'subtract':
+        handleSubtract.call(event.target, event);
       break;
       default:
       break;
