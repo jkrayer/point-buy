@@ -33,12 +33,18 @@
     return this.parentElement.previousElementSibling.dataset.score = 8;
   }
 
+  function handleLoad(theSelect) {
+    theSelect.selectedIndex = 0;
+  }
+
   // Attach events
   (function() {
     var app = document.getElementById('app');
     var raceSelect = document.getElementById('select-race');
     var modFields = document.getElementsByClassName('mod');
     var baseScores = document.querySelectorAll('[data-score]');
+
+    window.addEventListener('load', handleLoad.bind(null, raceSelect));
 
     raceSelect.addEventListener('change', function(event) {
       handleRaceChange.call(event.target, modFields);
