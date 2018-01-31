@@ -39,6 +39,10 @@ function handleSubtract() {
   return dataset.score = parseInt(dataset.score, 10) - 1;
 }
 
+function handleReset() {
+  return this.parentElement.previousElementSibling.dataset.score = 8;
+}
+
 // Attach events
 (function() {
   var app = document.getElementById('app');
@@ -54,6 +58,9 @@ function handleSubtract() {
       break;
       case 'subtract':
         handleSubtract.call(event.target, event);
+      break;
+      case 'reset':
+        handleReset.call(event.target, event);
       break;
       default:
       break;
