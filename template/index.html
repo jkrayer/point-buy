@@ -5,7 +5,7 @@
   <title>Template - Point Buy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
-    [data-score]::before { content: attr(data-score); }
+    [data-score]::after { content: attr(data-score); }
   </style>
 </head>
 <body>
@@ -25,7 +25,7 @@
             <option value="[0,0,0,0,0,0]" disabled>Variant Human</option>
           </select>
         </td>
-        <td id="remaining-points" data-score="27"></td>
+        <td id="remaining-points" data-score="27" style="text-align: right;">Points: </td>
       </tr>
       <tr>
         <td></td>
