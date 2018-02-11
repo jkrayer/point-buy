@@ -35,15 +35,24 @@
 
   function handleRaceChange(modFields) {
     var raceMods = JSON.parse(this.value);
+    var race = this.selectedOptions[0].innerText;
+
     raceMods.forEach(function(mod, ind) {
+      var input;
+
       modFields[ind].innerText = mod;
+      if (race === 'Variant Human') {
+         input = document.createElement('INPUT');
+         input.type = "checkbox";
+         input.className="variant-human";
+         modFields[ind].append(input);
+      }
     });
   }
 
   function handleAdd() {
     var dataset = this.parentElement.previousElementSibling.dataset;
     var score = parseInt(dataset.score, 10);
-
     return dataset.score = pointTally.checkScore(score, score + 1) || score;
   }
 
@@ -72,13 +81,16 @@
     var modFields = document.getElementsByClassName('mod');
     var baseScores = document.querySelectorAll('tbody [data-score]');
     var remainingPoints = document.getElementById('remaining-points');
+    var checkboxes = document.getElementsByClassName('variant-human');
+
+    var getChecked = Array.prototype.filter.bind(checkboxes, function(el) {
+      return el.checked;
+    });
+    var getArrayOfChecks = Array.prototype.map.bind(checkboxes, function(el) {
+      return el.checked ? 1 : 0;
+    });
 
     window.addEventListener('load', handleLoad.bind(null, raceSelect));
-
-    raceSelect.addEventListener('change', function(event) {
-      handleRaceChange.call(event.target, modFields);
-      calculate(JSON.parse(event.target.value), baseScores);
-    });
 
     app.addEventListener('click', function(event) {
       switch(event.target.className) {
@@ -96,6 +108,23 @@
       }
       calculate(JSON.parse(raceSelect.value), baseScores);
       remainingPoints.dataset.score = pointTally.getRemainder();
+    });
+
+    app.addEventListener('change', function(event) {
+      switch (event.target.type) {
+        case 'select-one':
+          handleRaceChange.call(event.target, modFields);
+          calculate(JSON.parse(event.target.value), baseScores);
+        break;
+        case 'checkbox':
+          if (getChecked().length === 3) {
+            event.target.checked = false;
+          }
+          calculate(getArrayOfChecks(), baseScores);
+        break;
+        default:
+        break;
+      }
     });
   }());
 }());
