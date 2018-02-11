@@ -1,6 +1,7 @@
 (function() {
   var mods = [0, 0, 0, 0, 0, 0];
 
+  // Interface for dealing with point costs
   var pointTally = (function() {
     var max = 27;
     var pool = max;
@@ -27,39 +28,45 @@
     };
   }());
 
-  var calculate = (function(totalFields) {
-    return function(baseScores) {
+  // Put the total scores in the dom
+  var totalScores = (function(totalFields, baseScores) {
+    return function() {
       for (var i = 0; i < 6; i++) {
         totalFields[i].innerText = mods[i] + parseInt(baseScores[i].dataset.score, 10);
       }
     }
-  }(document.getElementsByClassName('total')));
+  }(document.getElementsByClassName('total'), document.querySelectorAll('tbody [data-score]')));
 
-  function handleRaceChange(modFields) {
-    var raceMods = JSON.parse(this.value);
-    var race = this.selectedOptions[0].innerText;
+  // Handle race change select menu
+  var handleRaceChange = (function(modFields) {
+    return function() {
+      var raceMods = JSON.parse(this.value);
+      var race = this.selectedOptions[0].innerText;
 
-    raceMods.forEach(function(mod, ind) {
-      var input;
+      raceMods.forEach(function(mod, ind) {
+        var input;
 
-      if (race === 'Variant Human') {
-        input = document.createElement('INPUT');
-        input.type = "checkbox";
-        input.className="variant-human";
-        modFields[ind].innerText = '';
-        modFields[ind].append(input);
-      } else {
-        modFields[ind].innerText = mod;
-      }
-    });
-  }
+        if (race === 'Variant Human') {
+          input = document.createElement('INPUT');
+          input.type = "checkbox";
+          input.className="variant-human";
+          modFields[ind].innerText = '';
+          modFields[ind].append(input);
+        } else {
+          modFields[ind].innerText = mod;
+        }
+      });
+    }
+  }(document.getElementsByClassName('mod')));
 
+  // Add button handler
   function handleAdd() {
     var dataset = this.parentElement.previousElementSibling.dataset;
     var score = parseInt(dataset.score, 10);
     return dataset.score = pointTally.checkScore(score, score + 1) || score;
   }
 
+  // Subtract button handler
   function handleSubtract() {
     var dataset = this.parentElement.previousElementSibling.dataset;
     var score = parseInt(dataset.score, 10);
@@ -67,6 +74,7 @@
     return dataset.score = pointTally.checkScore(score, score - 1) || score;
   }
 
+  // Reset button handler
   function handleReset() {
     var dataset = this.parentElement.previousElementSibling.dataset;
     var score = parseInt(dataset.score, 10);
@@ -74,6 +82,7 @@
     return dataset.score = pointTally.checkScore(score, 8);
   }
 
+  // Rests vals on refresh
   function handleLoad(theSelect) {
     theSelect.selectedIndex = 0;
   }
@@ -82,8 +91,6 @@
   (function() {
     var app = document.getElementById('app');
     var raceSelect = document.getElementById('select-race');
-    var modFields = document.getElementsByClassName('mod');
-    var baseScores = document.querySelectorAll('tbody [data-score]');
     var remainingPoints = document.getElementById('remaining-points');
     var checkboxes = document.getElementsByClassName('variant-human');
 
@@ -110,23 +117,23 @@
         default:
         break;
       }
-      calculate(baseScores);
+      totalScores();
       remainingPoints.dataset.score = pointTally.getRemainder();
     });
 
     app.addEventListener('change', function(event) {
       switch (event.target.type) {
         case 'select-one':
-          handleRaceChange.call(event.target, modFields);
+          handleRaceChange.call(event.target);
           mods = JSON.parse(event.target.value);
-          calculate(baseScores);
+          totalScores();
         break;
         case 'checkbox':
           if (getChecked().length === 3) {
             event.target.checked = false;
           }
           mods = getArrayOfChecks();
-          calculate(baseScores);
+          totalScores();
         break;
         default:
         break;
