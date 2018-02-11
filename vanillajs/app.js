@@ -40,12 +40,14 @@
     raceMods.forEach(function(mod, ind) {
       var input;
 
-      modFields[ind].innerText = mod;
       if (race === 'Variant Human') {
-         input = document.createElement('INPUT');
-         input.type = "checkbox";
-         input.className="variant-human";
-         modFields[ind].append(input);
+        input = document.createElement('INPUT');
+        input.type = "checkbox";
+        input.className="variant-human";
+        modFields[ind].innerText = '';
+        modFields[ind].append(input);
+      } else {
+        modFields[ind].innerText = mod;
       }
     });
   }
