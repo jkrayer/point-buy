@@ -1,4 +1,6 @@
 (function() {
+  var mods = [0, 0, 0, 0, 0, 0];
+
   var pointTally = (function() {
     var max = 27;
     var pool = max;
@@ -26,7 +28,7 @@
   }());
 
   var calculate = (function(totalFields) {
-    return function(mods, baseScores) {
+    return function(baseScores) {
       for (var i = 0; i < 6; i++) {
         totalFields[i].innerText = mods[i] + parseInt(baseScores[i].dataset.score, 10);
       }
@@ -108,7 +110,7 @@
         default:
         break;
       }
-      calculate(JSON.parse(raceSelect.value), baseScores);
+      calculate(baseScores);
       remainingPoints.dataset.score = pointTally.getRemainder();
     });
 
@@ -116,13 +118,15 @@
       switch (event.target.type) {
         case 'select-one':
           handleRaceChange.call(event.target, modFields);
-          calculate(JSON.parse(event.target.value), baseScores);
+          mods = JSON.parse(event.target.value);
+          calculate(baseScores);
         break;
         case 'checkbox':
           if (getChecked().length === 3) {
             event.target.checked = false;
           }
-          calculate(getArrayOfChecks(), baseScores);
+          mods = getArrayOfChecks();
+          calculate(baseScores);
         break;
         default:
         break;
