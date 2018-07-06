@@ -1,4 +1,5 @@
 var data = {
+  points: 27,
   selectedRace: [0,0,0,0,0,0],
   races: [
       {
