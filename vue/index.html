@@ -15,29 +15,18 @@
     .text-right { text-align: right; }
   </style>
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+  <script type="text/javascript" src="vue.js"></script>
 </head>
 <body>
 
   <div id="app">
-    <table>
-      <thead>
-        <tr>
-          <td colspan="5" class="text-left">
-            <select v-model="selectedRace">
-              <option v-for="race in races" :value="race.value">{{race.text}}</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <th>Score</th>
-          <th>Total</th>
-          <th>Race</th>
-          <th>Base</th>
-          <td id="remaining-points" class="text-right">Points: {{ currentPoints }}</td>
-        </tr>
-      </thead>
-      <tbody>
+    <v-table>
+      <v-thead>
+        <select-row></select-row>
+        <header-row></header-row>
+      </v-thead>
+      <v-tbody>
         <score-row
           name="Str"
           scorekey="str"
@@ -113,8 +102,8 @@
             <v-button v-on:click="subtract('cha')">-</v-button>
             <v-button v-on:click="reset('cha')">reset</v-button></td>
         </tr> -->
-      </tbody>
-    </table>
+      </v-tbody>
+    </v-table>
   </div>
 
   <script src="app.js"></script>

@@ -67,10 +67,29 @@ Vue.component('score-row', {
   },
   template: '<tr> <th>{{ name }}</th> <td>{{ base + modifier }}</td> <td>{{ modifier }}</td> <td>{{ base }}</td> <td> <v-button v-on:click="$emit(\'add\')">+</v-button> <v-button v-on:click="$emit(\'subtract\')">-</v-button> <v-button v-on:click="$emit(\'reset\')">reset</v-button> </td> </tr>'
 });
-/*  <!-- selectedRace[key] -->
 
+Vue.component('header-row', {
+  props: {
+    races: Array
+  },
+  template: '<tr> <th>Score</th> <th>Total</th> <th>Race</th> <th>Base</th> <td id="remaining-points" class="text-right">Points: {{ currentPoints }}</td> </tr>'
+});
 
- */
+Vue.component('select-row', {
+  template: '<tr> <td colspan="5" class="text-left"> <select v-model="selectedRace"> <option v-for="race in races" :value="race.value">{{race.text}}</option> </select> </td> </tr>'
+});
+
+Vue.component('v-tbody', {
+  template: '<tbody><slot></slot></tbody>'
+});
+
+Vue.component('v-thead', {
+  template: '<thead><slot></slot></thead>'
+});
+
+Vue.component('v-table', {
+  template: '<table><slot></slot></table>'
+});
 
 var vm = new Vue({
   el: '#app',
