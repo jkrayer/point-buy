@@ -44,9 +44,9 @@
           <td>{{ selectedRace[0] }}</td>
           <td>{{ str.base }}</td>
           <td>
-            <button type="button" v-on:click="add('str')">+</button>
-            <button type="button" v-on:click="subtract('str')">-</button>
-            <button type="button" v-on:click="reset('str')">reset</button>
+            <v-button v-on:click="add('str')">+</v-button>
+            <v-button v-on:click="subtract('str')">-</v-button>
+            <v-button v-on:click="reset('str')">reset</v-button>
           </td>
         </tr>
         <tr>
@@ -55,9 +55,9 @@
           <td>{{ selectedRace[1] }}</td>
           <td>{{ con.base }}</td>
           <td>
-            <button type="button" v-on:click="add('con')">+</button>
-            <button type="button" v-on:click="subtract('con')">-</button>
-            <button type="button" v-on:click="reset('con')">reset</button>
+            <v-button v-on:click="add('con')">+</v-button>
+            <v-button v-on:click="subtract('con')">-</v-button>
+            <v-button v-on:click="reset('con')">reset</v-button>
           </td>
         </tr>
         <tr>
@@ -66,9 +66,9 @@
           <td>{{ selectedRace[2] }}</td>
           <td>{{ dex.base }}</td>
           <td>
-            <button type="button" v-on:click="add('dex')">+</button>
-            <button type="button" v-on:click="subtract('dex')">-</button>
-            <button type="button" v-on:click="reset('dex')">reset</button>
+            <v-button v-on:click="add('dex')">+</v-button>
+            <v-button v-on:click="subtract('dex')">-</v-button>
+            <v-button v-on:click="reset('dex')">reset</v-button>
           </td>
         </tr>
         <tr>
@@ -77,9 +77,9 @@
           <td>{{ selectedRace[3] }}</td>
           <td>{{ int.base }}</td>
           <td>
-            <button type="button" v-on:click="add('int')">+</button>
-            <button type="button" v-on:click="subtract('int')">-</button>
-            <button type="button" v-on:click="reset('int')">reset</button></td>
+            <v-button v-on:click="add('int')">+</v-button>
+            <v-button v-on:click="subtract('int')">-</v-button>
+            <v-button v-on:click="reset('int')">reset</v-button></td>
         </tr>
         <tr>
           <th>Wis</th>
@@ -87,9 +87,9 @@
           <td>{{ selectedRace[4] }}</td>
           <td>{{ wis.base }}</td>
           <td>
-            <button type="button" v-on:click="add('wis')">+</button>
-            <button type="button" v-on:click="subtract('wis')">-</button>
-            <button type="button" v-on:click="reset('wis')">reset</button>
+            <v-button v-on:click="add('wis')">+</v-button>
+            <v-button v-on:click="subtract('wis')">-</v-button>
+            <v-button v-on:click="reset('wis')">reset</v-button>
           </td>
         </tr>
         <tr>
@@ -98,9 +98,9 @@
           <td>{{ selectedRace[5] }}</td>
           <td>{{ cha.base }}</td>
           <td>
-            <button type="button" v-on:click="add('cha')">+</button>
-            <button type="button" v-on:click="subtract('cha')">-</button>
-            <button type="button" v-on:click="reset('cha')">reset</button></td>
+            <v-button v-on:click="add('cha')">+</v-button>
+            <v-button v-on:click="subtract('cha')">-</v-button>
+            <v-button v-on:click="reset('cha')">reset</v-button></td>
         </tr>
       </tbody>
     </table>

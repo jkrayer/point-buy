@@ -66,6 +66,10 @@ var data = {
   }
 };
 
+Vue.component('v-button', {
+  template: '<button type="button" v-on:click="$emit(\'click\')"><slot></slot></button>'
+});
+
 var vm = new Vue({
   el: '#app',
   data: data,
