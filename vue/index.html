@@ -23,6 +23,10 @@
   <div id="app">
     <v-table>
       <v-thead>
+        <!-- <select-row
+          v-model="selectedRaces"
+          v-bind:races="races"
+        ></select-row> -->
         <header-row
           v-bind:points="currentPoints"
         ></header-row>
@@ -37,72 +41,57 @@
           v-on:add="add('str')"
           v-on:subtract="subtract('str')"
           v-on:reset="reset('str')"
-        >
-        </score-row>
-        <!-- <tr>
-          <th>Str</th>
-          <td>{{ str.base + selectedRace[0] }}</td>
-          <td>{{ selectedRace[0] }}</td>
-          <td>{{ str.base }}</td>
-          <td>
-            <v-button v-on:click="add('str')">+</v-button>
-            <v-button v-on:click="subtract('str')">-</v-button>
-            <v-button v-on:click="reset('str')">reset</v-button>
-          </td>
-        </tr>
-        <tr>
-          <th>Con</th>
-          <td>{{ con.base + selectedRace[1] }}</td>
-          <td>{{ selectedRace[1] }}</td>
-          <td>{{ con.base }}</td>
-          <td>
-            <v-button v-on:click="add('con')">+</v-button>
-            <v-button v-on:click="subtract('con')">-</v-button>
-            <v-button v-on:click="reset('con')">reset</v-button>
-          </td>
-        </tr>
-        <tr>
-          <th>Dex</th>
-          <td>{{ dex.base + selectedRace[2] }}</td>
-          <td>{{ selectedRace[2] }}</td>
-          <td>{{ dex.base }}</td>
-          <td>
-            <v-button v-on:click="add('dex')">+</v-button>
-            <v-button v-on:click="subtract('dex')">-</v-button>
-            <v-button v-on:click="reset('dex')">reset</v-button>
-          </td>
-        </tr>
-        <tr>
-          <th>Int</th>
-          <td>{{ int.base + selectedRace[3] }}</td>
-          <td>{{ selectedRace[3] }}</td>
-          <td>{{ int.base }}</td>
-          <td>
-            <v-button v-on:click="add('int')">+</v-button>
-            <v-button v-on:click="subtract('int')">-</v-button>
-            <v-button v-on:click="reset('int')">reset</v-button></td>
-        </tr>
-        <tr>
-          <th>Wis</th>
-          <td>{{ wis.base + selectedRace[4] }}</td>
-          <td>{{ selectedRace[4] }}</td>
-          <td>{{ wis.base }}</td>
-          <td>
-            <v-button v-on:click="add('wis')">+</v-button>
-            <v-button v-on:click="subtract('wis')">-</v-button>
-            <v-button v-on:click="reset('wis')">reset</v-button>
-          </td>
-        </tr>
-        <tr>
-          <th>Cha</th>
-          <td>{{ cha.base + selectedRace[5] }}</td>
-          <td>{{ selectedRace[5] }}</td>
-          <td>{{ cha.base }}</td>
-          <td>
-            <v-button v-on:click="add('cha')">+</v-button>
-            <v-button v-on:click="subtract('cha')">-</v-button>
-            <v-button v-on:click="reset('cha')">reset</v-button></td>
-        </tr> -->
+        ></score-row>
+        <score-row
+          name="Con"
+          scorekey="con"
+          v-bind:add="add"
+          v-bind:base="con.base"
+          v-bind:modifier="selectedRace[1]"
+          v-on:add="add('con')"
+          v-on:subtract="subtract('con')"
+          v-on:reset="reset('con')"
+        ></score-row>
+        <score-row
+          name="Dex"
+          scorekey="dex"
+          v-bind:add="add"
+          v-bind:base="dex.base"
+          v-bind:modifier="selectedRace[2]"
+          v-on:add="add('dex')"
+          v-on:subtract="subtract('dex')"
+          v-on:reset="reset('dex')"
+        ></score-row>
+        <score-row
+          name="Int"
+          scorekey="int"
+          v-bind:add="add"
+          v-bind:base="int.base"
+          v-bind:modifier="selectedRace[3]"
+          v-on:add="add('int')"
+          v-on:subtract="subtract('int')"
+          v-on:reset="reset('int')"
+        ></score-row>
+        <score-row
+          name="Wis"
+          scorekey="wis"
+          v-bind:add="add"
+          v-bind:base="wis.base"
+          v-bind:modifier="selectedRace[4]"
+          v-on:add="add('wis')"
+          v-on:subtract="subtract('wis')"
+          v-on:reset="reset('wis')"
+        ></score-row>
+        <score-row
+          name="Cha"
+          scorekey="cha"
+          v-bind:add="add"
+          v-bind:base="cha.base"
+          v-bind:modifier="selectedRace[5]"
+          v-on:add="add('cha')"
+          v-on:subtract="subtract('cha')"
+          v-on:reset="reset('cha')"
+        ></score-row>
       </v-tbody>
     </v-table>
   </div>
