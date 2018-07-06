@@ -46,29 +46,31 @@ var data = {
       //     text: 'Variant Human'
       // }
   ],
-  str: {
-    base: 8
-  },
-  con: {
-    base: 8
-  },
-  dex: {
-    base: 8
-  },
-  int: {
-    base: 8
-  },
-  wis: {
-    base: 8
-  },
-  cha: {
-    base: 8
-  }
+  str: { base: 8 },
+  con: { base: 8 },
+  dex: { base: 8 },
+  int: { base: 8 },
+  wis: { base: 8 },
+  cha: { base: 8 }
 };
 
 Vue.component('v-button', {
   template: '<button type="button" v-on:click="$emit(\'click\')"><slot></slot></button>'
 });
+
+Vue.component('score-row', {
+  props: {
+    name: String,
+    base: Number,
+    modifier: Number,
+    scorekey: String
+  },
+  template: '<tr> <th>{{ name }}</th> <td>{{ base + modifier }}</td> <td>{{ modifier }}</td> <td>{{ base }}</td> <td> <v-button v-on:click="$emit(\'add\')">+</v-button> <v-button v-on:click="$emit(\'subtract\')">-</v-button> <v-button v-on:click="$emit(\'reset\')">reset</v-button> </td> </tr>'
+});
+/*  <!-- selectedRace[key] -->
+
+
+ */
 
 var vm = new Vue({
   el: '#app',

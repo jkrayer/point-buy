@@ -38,7 +38,18 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <score-row
+          name="Str"
+          scorekey="str"
+          v-bind:add="add"
+          v-bind:base="str.base"
+          v-bind:modifier="selectedRace[0]"
+          v-on:add="add('str')"
+          v-on:subtract="subtract('str')"
+          v-on:reset="reset('str')"
+        >
+        </score-row>
+        <!-- <tr>
           <th>Str</th>
           <td>{{ str.base + selectedRace[0] }}</td>
           <td>{{ selectedRace[0] }}</td>
@@ -101,7 +112,7 @@
             <v-button v-on:click="add('cha')">+</v-button>
             <v-button v-on:click="subtract('cha')">-</v-button>
             <v-button v-on:click="reset('cha')">reset</v-button></td>
-        </tr>
+        </tr> -->
       </tbody>
     </table>
   </div>
