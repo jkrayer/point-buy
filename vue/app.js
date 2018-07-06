@@ -1,5 +1,8 @@
+var costTable = new Map([[8, 0], [9, 1], [10, 2], [11, 3], [12, 4], [13, 5],[ 14, 7], [15, 9]]);
+
 var data = {
-  points: 27,
+  maxPoints: 27,
+  currentPoints: 27,
   selectedRace: [0,0,0,0,0,0],
   races: [
       {
@@ -65,5 +68,21 @@ var data = {
 
 var vm = new Vue({
   el: '#app',
-  data: data
+  data: data,
+  methods: {
+    add: function(score) {
+      data[score].base = this._checkScore(data[score].base, data[score].base + 1);
+    },
+    _checkScore: function(oldScore, newScore) {
+      var difference = costTable.get(oldScore) - costTable.get(newScore);
+      var newPool = data.currentPoints + difference;
+
+      if (newPool > data.maxPoints || newPool < 0 || isNaN(newPool)) {
+        return oldScore;
+      }
+
+      data.currentPoints = newPool;
+      return newScore;
+    },
+  }
 })
