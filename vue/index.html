@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Template - Point Buy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body, html { padding: 0; margin: 0; font-family: Times, "Time New Roman", Georgia, serif; }
+    [data-score]::after { content: attr(data-score); }
+    tbody > tr:nth-of-type(odd) { background-color: #eee; }
+    tbody th { text-align: right; }
+    td, th { padding: .625em; }
+    td, thead th { text-align: center; }
+    select { width: 59%; }
+    .text-left { text-align: left; }
+    .text-right { text-align: right; }
+  </style>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+  <div id="app">
+    <table>
+      <thead>
+        <tr>
+          <td colspan="5" class="text-left">
+            <select v-model="selectedRace">
+              <option v-for="race in races" :value="race.value">{{race.text}}</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <th>Score</th>
+          <th>Total</th>
+          <th>Race</th>
+          <th>Base</th>
+          <td id="remaining-points" class="text-right" data-score="27">Points: </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Str</th>
+          <td class="total">{{ str.base }}</td>
+          <td class="mod">{{ selectedRace[0] }}</td>
+          <td data-score="8"></td>
+          <td><button type="button" class="add">+</button> <button type="button" class="subtract">-</button> <button type="button" class="reset">reset</button></td>
+        </tr>
+        <tr>
+          <th>Con</th>
+          <td class="total">{{ con.base }}</td>
+          <td class="mod">{{ selectedRace[1] }}</td>
+          <td data-score="8"></td>
+          <td><button type="button" class="add">+</button> <button type="button" class="subtract">-</button> <button type="button" class="reset">reset</button></td>
+        </tr>
+        <tr>
+          <th>Dex</th>
+          <td class="total">{{ dex.base }}</td>
+          <td class="mod">{{ selectedRace[2] }}</td>
+          <td data-score="8"></td>
+          <td><button type="button" class="add">+</button> <button type="button" class="subtract">-</button> <button type="button" class="reset">reset</button></td>
+        </tr>
+        <tr>
+          <th>Int</th>
+          <td class="total">{{ int.base }}</td>
+          <td class="mod">{{ selectedRace[3] }}</td>
+          <td data-score="8"></td>
+          <td><button type="button" class="add">+</button> <button type="button" class="subtract">-</button> <button type="button" class="reset">reset</button></td>
+        </tr>
+        <tr>
+          <th>Wis</th>
+          <td class="total">{{ wis.base }}</td>
+          <td class="mod">{{ selectedRace[4] }}</td>
+          <td data-score="8"></td>
+          <td><button type="button" class="add">+</button> <button type="button" class="subtract">-</button> <button type="button" class="reset" class="reset">reset</button></td>
+        </tr>
+        <tr>
+          <th>Cha</th>
+          <td class="total">{{ cha.base }}</td>
+          <td class="mod">{{ selectedRace[5] }}</td>
+          <td data-score="8"></td>
+          <td><button type="button" class="add">+</button> <button type="button" class="subtract">-</button> <button type="button" class="reset">reset</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
