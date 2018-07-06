@@ -73,6 +73,9 @@ var vm = new Vue({
     add: function(score) {
       data[score].base = this._checkScore(data[score].base, data[score].base + 1);
     },
+    subtract: function(score) {
+      data[score].base = this._checkScore(data[score].base, data[score].base - 1);
+    },
     _checkScore: function(oldScore, newScore) {
       var difference = costTable.get(oldScore) - costTable.get(newScore);
       var newPool = data.currentPoints + difference;

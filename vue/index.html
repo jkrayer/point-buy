@@ -44,42 +44,64 @@
           <td class="total">{{ str.base + selectedRace[0] }}</td>
           <td class="mod">{{ selectedRace[0] }}</td>
           <td>{{ str.base }}</td>
-          <td><button type="button" class="add" v-on:click="add('str')">+</button> <button type="button" class="subtract">-</button> <button type="button" class="reset">reset</button></td>
+          <td>
+            <button type="button" class="add" v-on:click="add('str')">+</button>
+            <button type="button" class="subtract" v-on:click="subtract('str')">-</button>
+            <button type="button" class="reset">reset</button>
+          </td>
         </tr>
         <tr>
           <th>Con</th>
           <td class="total">{{ con.base + selectedRace[1] }}</td>
           <td class="mod">{{ selectedRace[1] }}</td>
           <td>{{ con.base }}</td>
-          <td><button type="button" class="add" v-on:click="add('con')">+</button> <button type="button" class="subtract">-</button> <button type="button" class="reset">reset</button></td>
+          <td>
+            <button type="button" class="add" v-on:click="add('con')">+</button>
+            <button type="button" class="subtract" v-on:click="subtract('con')">-</button>
+            <button type="button" class="reset">reset</button>
+          </td>
         </tr>
         <tr>
           <th>Dex</th>
           <td class="total">{{ dex.base + selectedRace[2] }}</td>
           <td class="mod">{{ selectedRace[2] }}</td>
           <td>{{ dex.base }}</td>
-          <td><button type="button" class="add" v-on:click="add('dex')">+</button> <button type="button" class="subtract">-</button> <button type="button" class="reset">reset</button></td>
+          <td>
+            <button type="button" class="add" v-on:click="add('dex')">+</button>
+            <button type="button" class="subtract" v-on:click="subtract('dex')">-</button>
+            <button type="button" class="reset">reset</button>
+          </td>
         </tr>
         <tr>
           <th>Int</th>
           <td class="total">{{ int.base + selectedRace[3] }}</td>
           <td class="mod">{{ selectedRace[3] }}</td>
           <td>{{ int.base }}</td>
-          <td><button type="button" class="add" v-on:click="add('int')">+</button> <button type="button" class="subtract">-</button> <button type="button" class="reset">reset</button></td>
+          <td>
+            <button type="button" class="add" v-on:click="add('int')">+</button>
+            <button type="button" class="subtract" v-on:click="subtract('int')">-</button>
+            <button type="button" class="reset">reset</button></td>
         </tr>
         <tr>
           <th>Wis</th>
           <td class="total">{{ wis.base + selectedRace[4] }}</td>
           <td class="mod">{{ selectedRace[4] }}</td>
           <td>{{ wis.base }}</td>
-          <td><button type="button" class="add" v-on:click="add('wis')">+</button> <button type="button" class="subtract">-</button> <button type="button" class="reset" class="reset">reset</button></td>
+          <td>
+            <button type="button" class="add" v-on:click="add('wis')">+</button>
+            <button type="button" class="subtract" v-on:click="subtract('wis')">-</button>
+            <button type="button" class="reset" class="reset">reset</button>
+          </td>
         </tr>
         <tr>
           <th>Cha</th>
           <td class="total">{{ cha.base + selectedRace[5] }}</td>
           <td class="mod">{{ selectedRace[5] }}</td>
           <td>{{ cha.base }}</td>
-          <td><button type="button" class="add" v-on:click="add('cha')">+</button> <button type="button" class="subtract">-</button> <button type="button" class="reset">reset</button></td>
+          <td>
+            <button type="button" class="add" v-on:click="add('cha')">+</button>
+            <button type="button" class="subtract" v-on:click="subtract('cha')">-</button>
+            <button type="button" class="reset">reset</button></td>
         </tr>
       </tbody>
     </table>
