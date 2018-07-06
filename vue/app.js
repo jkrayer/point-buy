@@ -73,6 +73,9 @@ var vm = new Vue({
     add: function(score) {
       data[score].base = this._checkScore(data[score].base, data[score].base + 1);
     },
+    reset: function(score) {
+      data[score].base = this._checkScore(data[score].base, 8);
+    },
     subtract: function(score) {
       data[score].base = this._checkScore(data[score].base, data[score].base - 1);
     },

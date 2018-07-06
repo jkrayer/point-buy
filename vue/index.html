@@ -47,7 +47,7 @@
           <td>
             <button type="button" class="add" v-on:click="add('str')">+</button>
             <button type="button" class="subtract" v-on:click="subtract('str')">-</button>
-            <button type="button" class="reset">reset</button>
+            <button type="button" class="reset" v-on:click="reset('str')">reset</button>
           </td>
         </tr>
         <tr>
@@ -58,7 +58,7 @@
           <td>
             <button type="button" class="add" v-on:click="add('con')">+</button>
             <button type="button" class="subtract" v-on:click="subtract('con')">-</button>
-            <button type="button" class="reset">reset</button>
+            <button type="button" class="reset" v-on:click="reset('con')">reset</button>
           </td>
         </tr>
         <tr>
@@ -69,7 +69,7 @@
           <td>
             <button type="button" class="add" v-on:click="add('dex')">+</button>
             <button type="button" class="subtract" v-on:click="subtract('dex')">-</button>
-            <button type="button" class="reset">reset</button>
+            <button type="button" class="reset" v-on:click="reset('dex')">reset</button>
           </td>
         </tr>
         <tr>
@@ -80,7 +80,7 @@
           <td>
             <button type="button" class="add" v-on:click="add('int')">+</button>
             <button type="button" class="subtract" v-on:click="subtract('int')">-</button>
-            <button type="button" class="reset">reset</button></td>
+            <button type="button" class="reset" v-on:click="reset('int')">reset</button></td>
         </tr>
         <tr>
           <th>Wis</th>
@@ -90,7 +90,7 @@
           <td>
             <button type="button" class="add" v-on:click="add('wis')">+</button>
             <button type="button" class="subtract" v-on:click="subtract('wis')">-</button>
-            <button type="button" class="reset" class="reset">reset</button>
+            <button type="button" class="reset" v-on:click="reset('wis')">reset</button>
           </td>
         </tr>
         <tr>
@@ -101,7 +101,7 @@
           <td>
             <button type="button" class="add" v-on:click="add('cha')">+</button>
             <button type="button" class="subtract" v-on:click="subtract('cha')">-</button>
-            <button type="button" class="reset">reset</button></td>
+            <button type="button" class="reset" v-on:click="reset('cha')">reset</button></td>
         </tr>
       </tbody>
     </table>
