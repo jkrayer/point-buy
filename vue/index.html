@@ -23,10 +23,9 @@
   <div id="app">
     <v-table>
       <v-thead>
-        <!-- <select-row
-          v-model="selectedRaces"
-          v-bind:races="races"
-        ></select-row> -->
+        <select-row>
+          <select v-model="selectedRace"> <option v-for="race in races" :value="race.value">{{race.text}}</option></select>
+        </select-row>
         <header-row
           v-bind:points="currentPoints"
         ></header-row>

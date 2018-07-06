@@ -76,11 +76,7 @@ Vue.component('header-row', {
 });
 
 Vue.component('select-row', {
-  props: {
-    races: Array,
-    selectedRace: Array
-  },
-  template: '<tr> <td colspan="5" class="text-left"> <select v-model="selectedRace"> <option v-for="race in races" :value="race.value">{{race.text}}</option> </select> </td> </tr>'
+  template: '<tr> <td colspan="5" class="text-left"><slot></slot></td> </tr>'
 });
 
 Vue.component('v-tbody', {
