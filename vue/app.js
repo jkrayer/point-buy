@@ -70,12 +70,16 @@ Vue.component('score-row', {
 
 Vue.component('header-row', {
   props: {
-    races: Array
+    points: Number
   },
-  template: '<tr> <th>Score</th> <th>Total</th> <th>Race</th> <th>Base</th> <td id="remaining-points" class="text-right">Points: {{ currentPoints }}</td> </tr>'
+  template: '<tr> <th>Score</th> <th>Total</th> <th>Race</th> <th>Base</th> <td id="remaining-points" class="text-right">Points: {{ points }}</td> </tr>'
 });
 
 Vue.component('select-row', {
+  props: {
+    races: Array,
+    selectedRace: Array
+  },
   template: '<tr> <td colspan="5" class="text-left"> <select v-model="selectedRace"> <option v-for="race in races" :value="race.value">{{race.text}}</option> </select> </td> </tr>'
 });
 

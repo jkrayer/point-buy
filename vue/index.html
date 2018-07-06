@@ -23,8 +23,9 @@
   <div id="app">
     <v-table>
       <v-thead>
-        <select-row></select-row>
-        <header-row></header-row>
+        <header-row
+          v-bind:points="currentPoints"
+        ></header-row>
       </v-thead>
       <v-tbody>
         <score-row
