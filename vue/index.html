@@ -14,17 +14,20 @@
     .text-left { text-align: left; }
     .text-right { text-align: right; }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+  <script type="text/javascript" src="vue.js"></script>
 </head>
 <body>
 
   <div id="app">
     <v-table>
       <v-thead>
-        <select-row>
+        <v-row
+          colspan="5"
+        >
           <select v-model="selectedRace"> <option v-for="race in races" :value="race.value">{{race.text}}</option></select>
-        </select-row>
+        </v-row>
         <header-row
           v-bind:points="currentPoints"
         ></header-row>
