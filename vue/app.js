@@ -75,11 +75,16 @@
     template: '<tr> <th>Score</th> <th>Total</th> <th>Race</th> <th>Base</th> <td id="remaining-points" class="text-right">Points: {{ points }}</td> </tr>'
   });
 
-  Vue.component('v-row', {
+  Vue.component('cell', {
       props: {
-          colspan: Number
+          colspan: Number,
+          rowspan: Number
       },
-    template: '<tr> <td :colspan="colspan" class="text-left"><slot></slot></td> </tr>'
+    template: '<td :colspan="colspan" :rowspan="rowspan" class="text-left"><slot></slot></td>'
+  });
+
+  Vue.component('row', {
+    template: '<tr><slot></slot></tr>'
   });
 
   Vue.component('v-tbody', {
