@@ -1,9 +1,10 @@
-(function(){
+(function() {
   var costTable = new Map([[8, 0], [9, 1], [10, 2], [11, 3], [12, 4], [13, 5],[ 14, 7], [15, 9]]);
   var data = {
     maxPoints: 27,
     currentPoints: 27,
     selectedRace: [0,0,0,0,0,0],
+    selectedRaceName: 'Race',
     races: [
         {
             value: [0,0,0,0,0,0],
@@ -40,11 +41,11 @@
         {
             value: [1,1,1,1,1,1],
             text: 'Human'
+        },
+        {
+            value: [0,0,0,0,0,0],
+            text: 'Variant Human'
         }
-        // {
-        //     value: [0,0,0,0,0,0],
-        //     text: 'Variant Human'
-        // }
     ],
     str: { base: 8 },
     con: { base: 8 },
@@ -65,7 +66,12 @@
       modifier: Number,
       scorekey: String
     },
-    template: '<tr> <th>{{ name }}</th> <td>{{ base + modifier }}</td> <td>{{ modifier }}</td> <td>{{ base }}</td> <td> <v-button v-on:click="$emit(\'add\')">+</v-button> <v-button v-on:click="$emit(\'subtract\')">-</v-button> <v-button v-on:click="$emit(\'reset\')">reset</v-button> </td> </tr>'
+    data: function() {
+      return {
+        showcheckbox: this.$root.selectedRaceName === 'Variant Human'
+      };
+    },
+    template: '<tr> <th>{{ name }}</th> <td>{{ base + modifier }}</td> <td>{{ showcheckbox ? "str" : modifier }}</td> <td>{{ base }}</td> <td> <v-button v-on:click="$emit(\'add\')">+</v-button> <v-button v-on:click="$emit(\'subtract\')">-</v-button> <v-button v-on:click="$emit(\'reset\')">reset</v-button> </td> </tr>'
   });
 
   Vue.component('header-row', {
